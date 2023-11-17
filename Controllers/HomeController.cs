@@ -1,9 +1,11 @@
 ﻿using kadila.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace kadila.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -18,6 +20,7 @@ namespace kadila.Controllers
             return View();
         }
 
+        [Authorize(Roles = "1")]
         public IActionResult Privacy()
         {
             return View();

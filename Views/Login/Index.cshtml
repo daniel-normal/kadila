@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="row mt-5">
+        <div class="col-sm-4 offset-sm-4">
+            <form asp-controller="Login" asp-action="Index" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="Email" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">No compartiremos tu correo electrónico con nadie más.</div>
+                    <span class="text-danger">@Html.ValidationMessage("Email")</span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="Password">
+                    <span class="text-danger">@Html.ValidationMessage("Password")</span>
+                </div>
+
+                <div class="text-danger">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <p>Error: Correo electrónico o contraseña incorrectos.</p>
+                    }
+                </div>
+
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

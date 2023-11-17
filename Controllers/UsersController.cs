@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using kadila.Data;
 using kadila.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace kadila.Controllers
 {
@@ -61,6 +62,9 @@ namespace kadila.Controllers
         {
             if (ModelState.IsValid)
             {
+                var passwordHasher = new PasswordHasher<User>();
+                user.Password = passwordHasher.HashPassword(user, user.Password);
+
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -68,6 +72,7 @@ namespace kadila.Controllers
             ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", user.RolId);
             return View(user);
         }
+
 
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(ulong? id)

@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Kreon&family=Oxygen&family=Rubik&display=swap');
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
 html {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media (min-width: 768px) {

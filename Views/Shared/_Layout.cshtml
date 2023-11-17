@@ -25,10 +25,11 @@
 
                     @if(User.IsInRole("1"))
                     {
-                        <a asp-area="" asp-controller="Users" asp-action="Index" class="nav_link text-light"> <i class='fas fa-users nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
+                        <a asp-area="" asp-controller="Users" asp-action="Index" class="nav_link text-light"> <i class='fas fa-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
                     }
 
-                    <a href="#" class="nav_link text-light"> <i class='fas fa-envelope nav_icon'></i> <span class="nav_name">Messages</span> </a>
+                    <a asp-area="" asp-controller="Customers" asp-action="Index" class="nav_link text-light"> <i class='fas fa-users nav_icon'></i> <span class="nav_name">Clientes</span> </a>
+
                     <a href="#" class="nav_link text-light"> <i class='fas fa-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a>
                     <a href="#" class="nav_link text-light"> <i class='fas fa-folder nav_icon'></i> <span class="nav_name">Files</span> </a>
                     <a href="#" class="nav_link text-light"> <i class='fas fa-chart-bar nav_icon'></i> <span class="nav_name">Stats</span> </a>

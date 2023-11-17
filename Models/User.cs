@@ -9,10 +9,10 @@ public partial class User
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public ulong Id { get; set; }
-
+    [Display(Name = "Usuario")]
     [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
     public string Name { get; set; } = null!;
-
+    [Display(Name = "Correo Electrónico")]
     [Required(ErrorMessage = "El campo Email es obligatorio.")]
     [EmailAddress(ErrorMessage = "El campo Email no tiene un formato válido.")]
     public string Email { get; set; } = null!;
@@ -26,6 +26,7 @@ public partial class User
 
     [Display(Name = "Fecha de Actualización")]
     public DateTime? UpdatedAt { get; set; }
+    [Display(Name = "Rol")]
 
     public ulong? RolId { get; set; }
 

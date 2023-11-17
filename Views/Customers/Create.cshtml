@@ -1,79 +1,80 @@
 ﻿@model kadila.Models.Customer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "REGISTRAR CLIENTE";
 }
 
-<h1>Create</h1>
-
-<h4>Customer</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-dark text-center text-light">
+                <h1>REGISTRAR CLIENTE</h1>
             </div>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Apellido" class="control-label"></label>
-                <input asp-for="Apellido" class="form-control" />
-                <span asp-validation-for="Apellido" class="text-danger"></span>
-            </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <!-- Puedes agregar validaciones específicas para la dirección si lo necesitas -->
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="Apellido" class="control-label"></label>
+                        <input asp-for="Apellido" class="form-control" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="Direccion" class="control-label"></label>
+                        <input asp-for="Direccion" class="form-control" />
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="SaldoDeuda" class="control-label"></label>
-                <input asp-for="SaldoDeuda" class="form-control" />
-                <span asp-validation-for="SaldoDeuda" class="text-danger"></span>
-            </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input asp-for="Telefono" class="form-control" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                     
+                    <div class="form-group mb-2">
+                        <label asp-for="SaldoDeuda" class="control-label"></label>
+                        <input asp-for="SaldoDeuda" class="form-control" />
+                        <span asp-validation-for="SaldoDeuda" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="TipoCliente" class="control-label"></label>
-                <select asp-for="TipoCliente" class="form-control">
-                    <option value="Persona">Persona</option>
-                    <option value="Empresa">Empresa</option>
-                </select>
-                <span asp-validation-for="TipoCliente" class="text-danger"></span>
-            </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="TipoCliente" class="control-label"></label>
+                        <select asp-for="TipoCliente" class="form-control">
+                            <option value="Persona">Persona</option>
+                            <option value="Empresa">Empresa</option>
+                        </select>
+                        <span asp-validation-for="TipoCliente" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" type="date" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="CreatedAt" class="control-label"></label>
+                        <input asp-for="CreatedAt" class="form-control" type="date" />
+                        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" type="date" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="UpdatedAt" class="control-label"></label>
+                        <input asp-for="UpdatedAt" class="form-control" type="date" />
+                        <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                    <div class="form-group mb-2">
+                        <input type="submit" value="REGISTRAR" class="btn btn-success w-100" />
+                    </div>
+                </form>
+                <div>
+                    <a class="btn btn-secondary w-100" asp-action="Index">VOLVER</a>
+                </div>
             </div>
-        </form>
+        </div>  
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

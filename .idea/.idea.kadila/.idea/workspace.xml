@@ -10,11 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83ed6256-44c4-44eb-b6ca-aa1d0ca52d66" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Models/Contact.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/css/testimonials.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.kadila/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.kadila/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/InicioController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/InicioController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/DotnetContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/DotnetContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Contact.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Contact.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Inicio/Contact.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Inicio/Contact.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Inicio/Services.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Inicio/Services.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +126,7 @@
       <workItem from="1700765657445" duration="594000" />
       <workItem from="1700788257034" duration="16787000" />
       <workItem from="1700826841168" duration="8692000" />
+      <workItem from="1700836774445" duration="3191000" />
     </task>
     <servers />
   </component>

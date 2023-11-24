@@ -1,16 +1,12 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kadila S.R.L</title>
+    <title>@ViewData["Title"] - Kadila S.R.L</title>
     <link rel="shortcut icon" href="~/img/kadila.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/welcome.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/font-awesome/css/all.css" asp-append-version="true" />
@@ -45,59 +41,9 @@
             <li><a asp-controller="Inicio" asp-action="Contact">Contáctenos</a></li>
         </ul>
     </nav>
-    <section class="header-text-section">
-        <h1>Bienvenido</h1>
-        <h2>Tu esfuerzo y compromiso son motivo de orgullo para nosotros,</h2>
-        <h2>Gracias por hacer realidad nuestra misión de cuidado de la salud cada día.</h2>
-    </section>
-    <div class="wave" style="height: 170px; overflow: hidden;">
-        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-            <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path>
-        </svg>
-    </div>
 </header>
 <main>
-    <section class="text-center">
-        <h1 class="title">Kadila Pharmaceuticals S.R.L</h1>
-        <a class="btn btn-dark btn-lg w-50 my-lg-4" asp-controller="Login" asp-action="Index" role="button"> Sistema de Cobranzas </a>
-    </section>
-    <section class="container about-us">
-        <h2 class="title">Nosotros</h2>
-        <div class="about-us-container">
-            <img src="~/img/kadila.jpg" alt="" class="about-us-image visible animate__animated animate__rotateIn">
-            <div class="text-content">
-                <h3><span>1</span> Nuestra Misión </h3>
-                <p>
-                    Kadila Pharmaceuticals SRL es una empresa que distribuye, importa y produce medicamentos de calidad,
-                    posicionándose en el mercado farmacéutico público y privado con un talento humano activo comprometido con la salud de la población boliviana.
-                </p>
-                <h3><span>2</span> Nuestra Visión </h3>
-                <p>
-                    Somos una empresa legalmente establecida dedicada a la distribución e importación de medicamentos genéricos y de marca,
-                    participando activamente en el Sistema de Salud Pública y Privada, brindando servicios de calidad a la población boliviana.
-                </p>
-            </div>
-        </div>
-    </section>
-    <section class="portfolio">
-        <div class="container">
-            <h2 class="title">Nuestras Contribuciones</h2>
-            <div class="portfolio-gallery">
-                <div class="portfolio-image">
-                    <img src="~/img/delivery.jpg" alt="">
-                    <div class="hover-gallery">
-                        <p>Nuestro Trabajo</p>
-                    </div>
-                </div>
-                <div class="portfolio-image">
-                    <img src="~/img/quality.jpg" alt="">
-                    <div class="hover-gallery">
-                        <p>Nuestra Calidad</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @RenderBody()
 </main>
 <footer class="mt-5">
     <div class="footer-container">
@@ -124,6 +70,10 @@
     </div>
     <h2 class="title-final">Kadila</h2>
 </footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/scroll.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

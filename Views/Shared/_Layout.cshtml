@@ -30,14 +30,19 @@
 
                     <a asp-area="" asp-controller="Customers" asp-action="Index" class="nav_link text-light"> <i class='fas fa-users nav_icon'></i> <span class="nav_name">Clientes</span> </a>
 
-                    <a href="#" class="nav_link text-light"> <i class='fas fa-money-bill nav_icon'></i> <span class="nav_name">Deudas</span> </a>
-                    <a href="#" class="nav_link text-light"> <i class='fas fa-shopping-cart nav_icon'></i> <span class="nav_name">Ventas</span> </a>
-
+                    <a asp-area="" asp-controller="Debts" asp-action="Index" class="nav_link text-light">
+                        <i class='fas fa-money-bill nav_icon'></i>
+                        <span class="nav_name">Deudas</span>
+                    </a>
+                    <a asp-area="" asp-controller="Sales" asp-action="Index" class="nav_link text-light">
+                        <i class='fas fa-shopping-cart nav_icon'></i>
+                        <span class="nav_name">Ventas</span>
+                    </a>
 
                     <a href="#" class="nav_link text-light"> <i class='fas fa-chart-bar nav_icon'></i> <span class="nav_name">Reportes</span> </a>
                 </div>
             </div>
-            <a asp-area="" asp-controller="Login" asp-action="Logout" class="nav_link text-light"> <i class='fas fa-sign-out-alt nav_icon'></i> <span class="nav_name">Cerrar Sesión</span> </a>
+            <a asp-area="" asp-controller="Inicio" asp-action="Index" class="nav_link text-light"> <i class='fas fa-sign-out-alt nav_icon'></i> <span class="nav_name">Cerrar Sesión</span> </a>
         </nav>
     </div>
 

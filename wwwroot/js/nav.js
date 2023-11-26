@@ -11,3 +11,9 @@ $(document).ready(function(){
         $("nav ul").toggleClass("active")
     })
 })
+
+$(document).ready(function () {
+    $('.mobile-nav-toggle').click(function () {
+        $('nav ul').toggleClass('active');
+    });
+});

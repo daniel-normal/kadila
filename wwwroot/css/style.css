@@ -21,8 +21,6 @@
     margin-bottom: 60px;
 }
 
-/* Header */
-
 header {
     width: 100%;
     height: 600px;
@@ -44,14 +42,14 @@ nav > a {
     font-weight: 300;
     text-decoration: none;
     margin-right: 100px;
-    font-size: 30px; /* Tamaño de fuente más grande */
-    transition: all 0.3s; /* Animación de transición para el sombreado */
+    font-size: 30px;
+    transition: all 0.3s;
     position: relative;
 }
 
 nav > a:hover {
-    box-shadow: 0 3px 5px #060886; /* Sombreado al pasar el cursor */
-    transform: scale(1.6); /* Aumenta ligeramente el tamaño al pasar el cursor */
+    box-shadow: 0 3px 5px #060886;
+    transform: scale(1.6);
 }
 
 header .header-text-section {
@@ -83,7 +81,6 @@ header .header-text-section {
     background-color: rgb(13, 110, 253);
 }
 
-/* About us */
 
 main .about-us {
     padding: 30px 0 60px 0;
@@ -126,7 +123,6 @@ main .about-us {
     font-size: 16px;
 }
 
-/* Portfolio */
 
 .portfolio {
     background: #f2f2f2;
@@ -179,8 +175,6 @@ main .about-us {
 .portfolio-image:hover .hover-gallery {
     transform: scale(1);
 }
-
-/* Clients */
 
 .cards {
     display: flex;
@@ -246,8 +240,6 @@ main .about-us {
     text-align: justify;
 }
 
-/* Footer */
-
 footer {
     background: #000000;
     padding: 60px 0 30px 0;
@@ -305,11 +297,15 @@ footer {
         width: 90%;
     }
 
+    .address-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .portfolio-image {
         width: 44%;
     }
-
-    /* Clients */
 
     .cards {
         flex-direction: column;
@@ -388,8 +384,6 @@ footer {
         width: 90px;
         height: 90px;
     }
-
-    /* Footer */
 
     .footer-container {
         flex-direction: column;
@@ -506,7 +500,7 @@ nav > ul > li > a:hover{
 nav > ul > li > a{
     color: white;
     text-decoration: none;
-    text-transform: uppercase; /*for capitalisation of letters */
+    text-transform: uppercase;
     line-height: 80px;
     padding: 5px 20px;
     transition: .5s;
@@ -599,6 +593,19 @@ nav.black > ul > li > a{
     }
     
     .active{
+        display: block;
+    }
+}
+
+.mobile-nav-toggle {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
         display: block;
     }
 }

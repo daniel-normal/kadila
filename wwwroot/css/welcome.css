@@ -42,14 +42,14 @@ nav > a {
     font-weight: 300;
     text-decoration: none;
     margin-right: 100px;
-    font-size: 30px; /* Tamaño de fuente más grande */
-    transition: all 0.3s; /* Animación de transición para el sombreado */
+    font-size: 30px;
+    transition: all 0.3s;
     position: relative;
 }
 
 nav > a:hover {
-    box-shadow: 0 3px 5px #060886; /* Sombreado al pasar el cursor */
-    transform: scale(1.6); /* Aumenta ligeramente el tamaño al pasar el cursor */
+    box-shadow: 0 3px 5px #060886;
+    transform: scale(1.6);
 }
 
 header .header-text-section {
@@ -597,6 +597,19 @@ nav.black > ul > li > a{
     }
 
     .active{
+        display: block;
+    }
+}
+
+.mobile-nav-toggle {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
         display: block;
     }
 }

@@ -1,7 +1,6 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,14 +28,16 @@
         <div class="logo">
           <img src="~/img/logo.png" alt="logo"/>
         </div>
-        <div class="menu">
-            <h4>MENÚ</h4>
-        </div>
     </div>
     <nav>
         <div class="logo">
             <img src="~/img/logo.png" alt="logo"/>
         </div>
+
+        <div class="mobile-nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
         <ul>
             <li><a asp-controller="Inicio" asp-action="Index">Inicio</a></li>
             <li><a asp-controller="Inicio" asp-action="About">Nosotros</a></li>
@@ -84,13 +85,13 @@
             <h2 class="title">Nuestras Contribuciones</h2>
             <div class="portfolio-gallery">
                 <div class="portfolio-image">
-                    <img src="~/img/delivery.jpg" alt="">
+                        <img src="~/img/delivery.jpg" alt="delivery">
                     <div class="hover-gallery">
                         <p>Nuestro Trabajo</p>
                     </div>
                 </div>
                 <div class="portfolio-image">
-                    <img src="~/img/quality.jpg" alt="">
+                        <img src="~/img/quality.jpg" alt="quality">
                     <div class="hover-gallery">
                         <p>Nuestra Calidad</p>
                     </div>
@@ -98,6 +99,32 @@
             </div>
         </div>
     </section>
+
+    <section class="container address">
+        <h2 class="title">Nuestra Ubicación</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3825.3222407828744!2d-68.1641228!3d-16.5098216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915edf98e06bdc67%3A0xe8076af97814bf85!2sKadila%20Pharmaceuticals%20S.R.L.!5e0!3m2!1ses!2sbo!4v1701029120811!5m2!1ses!2sbo" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-lg-6 contact-info text-dark">
+                <div class="address-info my-lg-4">
+                    <h4 style="color: black;"><i class="fas fa-map-marker-alt"></i> &nbsp; Dirección </h4>
+                    <p style="color: black;"> El Alto, Zona 12 de octubre, calle No 5 entre </p>
+                    <p style="color: black;"> Av. Jorge Carrasco, Edificio Vela No 100, segundo piso</p>
+                </div>
+                    <div class="contact-info my-lg-4">
+                    <h4 style="color: black;"><i class="fas fa-phone"></i> &nbsp; Teléfono </h4>
+                    <p style="color: black;"> Tel: <a href="tel:+59122821591">591-2-2821591</a></p>
+                    <p style="color: black;"> Tel: <a href="tel:+59122824263">591-2-2824263</a></p>
+                </div>
+                    <div class="contact-info my-lg-4">
+                    <h4 style="color: black;"><i class="fas fa-envelope"></i> &nbsp; Correo Electrónico </h4>
+                    <p style="color: black;"> <a href="mailto:info@kadilapharma.com">info@kadilapharma.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 <footer class="mt-5">
     <div class="footer-container">

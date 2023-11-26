@@ -1,5 +1,4 @@
 ﻿body {
-    font-family: "Poppins", sans-serif;
     color: #444444;
 }
 
@@ -10,27 +9,27 @@ a:hover {
 }
 
 
-.section-products .header {
+.container .header {
     margin-bottom: 50px;
 }
 
-.section-products .header h3 {
+.container .header h3 {
     font-size: 1rem;
     color: rgb(13, 110, 253);
     font-weight: 500;
 }
 
-.section-products .header h2 {
+.container .header h2 {
     font-size: 2.2rem;
     font-weight: 400;
     color: #444444;
 }
 
-.section-products .single-product {
+.container .single-product {
     margin-bottom: 26px;
 }
 
-.section-products .single-product .part-1 {
+.container .single-product .part-1 {
     position: relative;
     height: 290px;
     max-height: 290px;
@@ -38,7 +37,7 @@ a:hover {
     overflow: hidden;
 }
 
-.section-products .single-product .part-1::before {
+.container .single-product .part-1::before {
     position: absolute;
     content: "";
     top: 0;
@@ -49,28 +48,28 @@ a:hover {
     transition: all 0.3s;
 }
 
-.section-products .single-product:hover .part-1::before {
+.container .single-product:hover .part-1::before {
     transform: scale(1.2,1.2) rotate(5deg);
 }
 
-.section-products #product-1 .part-1::before {
+.container #product-1 .part-1::before {
     transition: all 0.3s;
 }
 
-.section-products #product-2 .part-1::before {
+.container #product-2 .part-1::before {
     background-size: cover;
 }
 
-.section-products #product-3 .part-1::before {
+.container #product-3 .part-1::before {
     background-size: cover;
 }
 
-.section-products #product-4 .part-1::before {
+.container #product-4 .part-1::before {
     background-size: cover;
 }
 
-.section-products .single-product .part-1 .discount,
-.section-products .single-product .part-1 .new {
+.container .single-product .part-1 .discount,
+.container .single-product .part-1 .new {
     position: absolute;
     top: 15px;
     left: 20px;
@@ -81,12 +80,12 @@ a:hover {
     font-size: 0.85rem;
 }
 
-.section-products .single-product .part-1 .new {
+.container .single-product .part-1 .new {
     left: 0;
     background-color: #444444;
 }
 
-.section-products .single-product .part-1 ul {
+.container .single-product .part-1 ul {
     position: absolute;
     bottom: -41px;
     left: 20px;
@@ -97,17 +96,17 @@ a:hover {
     transition: bottom 0.5s, opacity 0.5s;
 }
 
-.section-products .single-product:hover .part-1 ul {
+.container .single-product:hover .part-1 ul {
     bottom: 30px;
     opacity: 1;
 }
 
-.section-products .single-product .part-1 ul li {
+.container .single-product .part-1 ul li {
     display: inline-block;
     margin-right: 4px;
 }
 
-.section-products .single-product .part-1 ul li a {
+.container .single-product .part-1 ul li a {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -119,27 +118,27 @@ a:hover {
     transition: color 0.2s;
 }
 
-.section-products .single-product .part-1 ul li a:hover {
+.container .single-product .part-1 ul li a:hover {
     color: rgb(13, 110, 253);
 }
 
-.section-products .single-product .part-2 .product-title {
+.container .single-product .part-2 .product-title {
     font-size: 1rem;
 }
 
-.section-products .single-product .part-2 h4 {
+.container .single-product .part-2 h4 {
     display: inline-block;
     font-size: 1rem;
 }
 
-.section-products .single-product .part-2 .product-old-price {
+.container .single-product .part-2 .product-old-price {
     position: relative;
     padding: 0 7px;
     margin-right: 2px;
     opacity: 0.6;
 }
 
-.section-products .single-product .part-2 .product-old-price::after {
+.container .single-product .part-2 .product-old-price::after {
     position: absolute;
     content: "";
     top: 50%;

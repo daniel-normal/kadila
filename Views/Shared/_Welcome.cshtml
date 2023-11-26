@@ -10,70 +10,77 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/font-awesome/css/all.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/slider.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="~/js/nav.js"></script>
     <style>
-        *{font-family: 'Hammersmith One', sans-serif;}
+        * {
+            font-family: 'Hammersmith One', sans-serif;
+        }
     </style>
 </head>
 <body>
-<button type="button" class="btn btn-primary btn-floating btn-lg" id="btn-back-to-top">
-    <i class="fas fa-arrow-up"></i>
-</button>
-<header>
-    <div class="responsive-bar">
-        <div class="logo">
-          <img src="~/img/logo.png" alt="logo"/>
-        </div>
-        <div class="menu">
-            <h4>MENÚ</h4>
-        </div>
-    </div>
-    <nav>
-        <div class="logo">
-            <img src="~/img/logo.png" alt="logo"/>
-        </div>
-        <ul>
-            <li><a asp-controller="Inicio" asp-action="Index">Inicio</a></li>
-            <li><a asp-controller="Inicio" asp-action="About">Nosotros</a></li>
-            <li><a asp-controller="Inicio" asp-action="Portfolio">Catálogo</a></li>
-            <li><a asp-controller="Inicio" asp-action="Services">Servicios</a></li>
-            <li><a asp-controller="Inicio" asp-action="Contact">Contáctenos</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    @RenderBody()
-</main>
-<footer class="mt-5">
-    <div class="footer-container">
-        <div class="contact-info">
-            <h4><i class="fas fa-phone"></i> &nbsp; Contacto </h4>
-            <p> Bolivia - La Paz,</p>
-            <p><i class="fas fa-phone-forward"></i> Tel: <a href="tel:+59122821591">591-2-2821591</a></p>
-            <p><i class="fas fa-phone-forward"></i> Tel: <a href="tel:+59122824263">591-2-2824263</a></p>
-        </div>
-        <div class="contact-info">
-            <div class="social-media">
-                <h4> <i class="fas fa-heart"></i> &nbsp; Redes Sociales </h4>
-                <a href="https://www.facebook.com/profile.php?id=100093208146513" class="header-text" style="color: white;">Facebook</a>
+    <button type="button" class="btn btn-primary btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <header>
+        <div class="responsive-bar">
+            <div class="logo">
+                <img src="~/img/logo.png" alt="logo" />
             </div>
         </div>
-        <div class="contact-info">
-            <div class="address-info">
-                <h4><i class="fas fa-map-marker-alt"></i> &nbsp; Dirección </h4>
-                <p> El Alto, Zona 12 de octubre, calle No 5 entre </p>
-                <p> Av. Jorge Carrasco, Edificio Vela No 100, segundo piso</p>
-                <a href="https://maps.app.goo.gl/iqcqKayfJ77bu1jy6" class="header-text" style="color: white;"> <i class="fas fa-map-marker-alt"></i> Google Maps</a>
+        <nav>
+            <div class="logo">
+                <img src="~/img/logo.png" alt="logo" />
+            </div>
+
+            <div class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul>
+                <li><a asp-controller="Inicio" asp-action="Index">Inicio</a></li>
+                <li><a asp-controller="Inicio" asp-action="About">Nosotros</a></li>
+                <li><a asp-controller="Inicio" asp-action="Portfolio">Catálogo</a></li>
+                <li><a asp-controller="Inicio" asp-action="Services">Servicios</a></li>
+                <li><a asp-controller="Inicio" asp-action="Contact">Contáctenos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer class="mt-5">
+        <div class="footer-container">
+            <div class="contact-info">
+                <h4><i class="fas fa-phone"></i> &nbsp; Contacto </h4>
+                <p> Bolivia - La Paz,</p>
+                <p><i class="fas fa-phone-forward"></i> Tel: <a href="tel:+59122821591">591-2-2821591</a></p>
+                <p><i class="fas fa-phone-forward"></i> Tel: <a href="tel:+59122824263">591-2-2824263</a></p>
+            </div>
+            <div class="contact-info">
+                <div class="social-media">
+                    <h4> <i class="fas fa-heart"></i> &nbsp; Redes Sociales </h4>
+                    <a href="https://www.facebook.com/profile.php?id=100093208146513" class="header-text" style="color: white;">Facebook</a>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="address-info">
+                    <h4><i class="fas fa-map-marker-alt"></i> &nbsp; Dirección </h4>
+                    <p> El Alto, Zona 12 de octubre, calle No 5 entre </p>
+                    <p> Av. Jorge Carrasco, Edificio Vela No 100, segundo piso</p>
+                    <a href="https://maps.app.goo.gl/iqcqKayfJ77bu1jy6" class="header-text" style="color: white;"> <i class="fas fa-map-marker-alt"></i> Google Maps</a>
+                </div>
             </div>
         </div>
-    </div>
-    <h2 class="title-final">Kadila</h2>
-</footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/scroll.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+        <h2 class="title-final">Kadila</h2>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/scroll.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/glightbox.min.js"></script>
+    <script src="~/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using kadila.Data;
 using kadila.Models;
 
 namespace kadila.Controllers
 {
+    [Authorize]
     public class LotsController : Controller
     {
         private readonly DotnetContext _context;

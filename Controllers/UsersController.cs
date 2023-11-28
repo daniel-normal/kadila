@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using kadila.Data;
 using kadila.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace kadila.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly DotnetContext _context;

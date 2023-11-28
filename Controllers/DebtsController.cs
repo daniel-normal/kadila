@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using kadila.Data;
 using kadila.Models;
 
 namespace kadila.Controllers
 {
+    [Authorize]
     public class DebtsController : Controller
     {
         private readonly DotnetContext _context;
@@ -159,7 +161,7 @@ namespace kadila.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        
         private bool DebtExists(ulong id)
         {
           return (_context.Debts?.Any(e => e.Id == id)).GetValueOrDefault();

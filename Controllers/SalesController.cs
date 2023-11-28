@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using kadila.Data;
 using kadila.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace kadila.Controllers
 {
+    [Authorize]
     public class SalesController : Controller
     {
         private readonly DotnetContext _context;

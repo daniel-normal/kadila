@@ -5,21 +5,21 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 var connectionString = builder.Configuration.GetConnectionString("AppDbConnectionString");
 builder.Services.AddDbContext<DotnetContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(option =>
+    .AddCookie(options =>
     {
-        option.LoginPath = "/Login/Index";
-        option.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-        option.AccessDeniedPath = "/Home/Privacy";
+        options.LoginPath = "/Login/Index";
+        //options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+        options.ExpireTimeSpan = TimeSpan.FromSeconds(5);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Home/Privacy";
     });
+
 
 var app = builder.Build();
 
@@ -33,14 +33,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Inicio}/{action=Index}/{id?}");
-
 app.Run();

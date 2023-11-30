@@ -34,4 +34,6 @@ public partial class User
     public virtual Role? Rol { get; set; }
 
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
+    
+    public virtual ICollection<Session> Sessions { get; set; } = new List<Session>();
 }

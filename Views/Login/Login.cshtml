@@ -14,12 +14,18 @@
     <link rel="stylesheet" href="~/font-awesome/css/all.css" asp-append-version="true" />
 </head>
 <body class="bg-light d-flex align-items-center justify-content-center vh-100">
+    <div class="text-danger">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <p>@ViewData["ErrorMessage"]</p>
+    }
+    </div>
     <div class="card shadow rounded mx-auto" style="width: 35rem; height: 25rem;">
         <div class="card-header bg-primary text-white text-center p-4">
             <h4><i class="fas fa-user-circle"></i> &nbsp; INICIAR SESIÓN </h4>
         </div>
         <div class="card-body p-4">
-            <form asp-controller="Login" asp-action="Index" method="post">
+            <form asp-controller="Login" asp-action="Login" method="post">
                 <div class="mb-4">
                     <label class="form-label">Correo Electrónico</label>
                     <div class="input-group">

@@ -36,6 +36,8 @@ public partial class DotnetContext : DbContext
     public virtual DbSet<User> Users { get; set; }
     
     public DbSet<Contact> Contacts { get; set; }
+    
+    public virtual DbSet<Session> Sessions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -392,6 +394,35 @@ public partial class DotnetContext : DbContext
                 .HasForeignKey(d => d.RolId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_rol");
+        });
+        
+        modelBuilder.Entity<Session>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("sessions");
+
+            entity.HasIndex(e => e.UserId, "sessions_user_id_foreign");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("bigint(20) unsigned")
+                .HasColumnName("id");
+            entity.Property(e => e.LoginDate)
+                .HasDefaultValueSql("current_timestamp()")
+                .HasColumnType("timestamp")
+                .HasColumnName("login_date");
+            entity.Property(e => e.LogoutDate)
+                .HasDefaultValueSql("current_timestamp()")
+                .HasColumnType("timestamp")
+                .HasColumnName("logout_date");
+            entity.Property(e => e.UserId)
+                .HasColumnType("bigint(20) unsigned")
+                .HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Sessions)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("sessions_user_id_foreign");
         });
 
         OnModelCreatingPartial(modelBuilder);

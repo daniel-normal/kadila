@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/font-awesome/css/all.css" asp-append-version="true" />
+    <script src="~/js/restriction.js" asp-append-version="true"></script>
 </head>
 <body id="body-pd">
     <header class="header" id="header">
@@ -37,6 +38,12 @@
                         <i class='fas fa-shopping-cart nav_icon'></i>
                         <span class="nav_name">Ventas</span>
                     </a>
+                    
+                    <a asp-area="" asp-controller="Sessions" asp-action="Index" class="nav_link text-light">
+                        <i class='fas fa-lock nav_icon'></i>
+                        <span class="nav_name">Sesiones</span>
+                    </a>
+                    
 
                     <a href="#" class="nav_link text-light"> <i class='fas fa-chart-bar nav_icon'></i> <span class="nav_name">Reportes</span> </a>
                 </div>

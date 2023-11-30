@@ -19,13 +19,13 @@ namespace kadila.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(User user)
+        public async Task<IActionResult> Login(User user)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace kadila.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Login", "Login");
         }
     }
 }

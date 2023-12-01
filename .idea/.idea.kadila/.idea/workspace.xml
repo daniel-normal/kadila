@@ -10,17 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83ed6256-44c4-44eb-b6ca-aa1d0ca52d66" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Models/Session.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.kadila/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.kadila/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.kadila/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.kadila/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/LoginController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/LoginController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/DotnetContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/DotnetContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Session.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Session.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Inicio/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Inicio/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Login/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Login/Login.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Debts/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Debts/Create.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kadila.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/kadila.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Shared/_Welcome.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_Welcome.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +35,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aacc74311ca994f12b71cddb22241be9d6654c65e94f5985c5488dee396916f/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -146,6 +148,7 @@
       <workItem from="1701182347567" duration="4166000" />
       <workItem from="1701313773211" duration="1296000" />
       <workItem from="1701346288428" duration="4954000" />
+      <workItem from="1701436730573" duration="11967000" />
     </task>
     <servers />
   </component>

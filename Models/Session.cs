@@ -7,7 +7,7 @@ public partial class Session
 
     public DateTime LoginDate { get; set; }
 
-    public DateTime LogoutDate { get; set; }
+    public DateTime? LogoutDate { get; set; }
 
     public ulong? UserId { get; set; }
 

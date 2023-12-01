@@ -431,15 +431,12 @@ public partial class DotnetContext : DbContext
     public User ValidateUser(string email, string password)
     {
         User user = Users.FirstOrDefault(u => u.Email == email);
-
         if (user != null)
         {
             var passwordHasher = new PasswordHasher<User>();
-
             if (user.Password != null)
             {
                 var result = passwordHasher.VerifyHashedPassword(user, user.Password, password);
-
                 if (result == PasswordVerificationResult.Success)
                 {
                     return user;

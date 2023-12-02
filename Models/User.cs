@@ -10,14 +10,14 @@ public partial class User
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public ulong Id { get; set; }
     [Display(Name = "Usuario")]
-    [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
+    [Required(ErrorMessage = "El Nombre es obligatorio.")]
     public string Name { get; set; } = null!;
     [Display(Name = "Correo Electrónico")]
-    [Required(ErrorMessage = "El campo Email es obligatorio.")]
+    [Required(ErrorMessage = "Ingrese un correo electrónico.")]
     [EmailAddress(ErrorMessage = "El campo Email no tiene un formato válido.")]
     public string Email { get; set; } = null!;
 
-    [Required(ErrorMessage = "El campo Password es obligatorio.")]
+    [Required(ErrorMessage = "Ingrese una contraseña correcta.")]
     [MinLength(6, ErrorMessage = "La longitud mínima de la contraseña es 6 caracteres.")]
     public string Password { get; set; } = null!;
 

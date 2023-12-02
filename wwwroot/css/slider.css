@@ -338,6 +338,7 @@
     margin-top: 460px;
 }
 
+
     .navigation-auto div {
         border: 2px solid #feffff;
         padding: 5px;
@@ -360,6 +361,7 @@
 #radio3:checked ~ .navigation-auto .auto-btn3 {
     background: #ffffff;
 }
+
 
 
 @-webkit-keyframes animate-loading {
@@ -437,6 +439,12 @@
 
     to {
         border-right-color: transparent;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider {
+        display: none;
     }
 }
 

@@ -9,24 +9,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Kadila - Iniciar Sesión</title>
+    <link rel="shortcut icon" href="~/img/kadila.jpg" type="image/x-icon">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/font-awesome/css/all.css" asp-append-version="true" />
 </head>
 <body class="bg-light d-flex align-items-center justify-content-center vh-100">
-    <div class="text-danger">
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <p>@ViewData["ErrorMessage"]</p>
-    }
+    <div class="ocean">
+        <div class="wave"></div>
     </div>
-    <div class="card shadow rounded mx-auto" style="width: 35rem; height: 25rem;">
+    <div class="text-center" style="position: absolute; width: 50%; top: 0; text-align: center; margin-top: 25px;">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> Correo electrónico o contraseña incorrectos.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    </div>
+    <div class="card shadow rounded mx-auto mt-4" style="width: 35rem; height: 27rem;">
         <div class="card-header bg-primary text-white text-center p-4">
             <h4><i class="fas fa-user-circle"></i> &nbsp; INICIAR SESIÓN </h4>
         </div>
         <div class="card-body p-4">
             <form asp-controller="Login" asp-action="Login" method="post">
-                <div class="mb-4">
+                <div class="mb-3">
                     <label class="form-label">Correo Electrónico</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
@@ -43,19 +52,12 @@
                     </div>
                     <span class="text-danger">@Html.ValidationMessage("Password")</span>
                 </div>
-
-                <div class="text-danger">
-                    @if (!ViewData.ModelState.IsValid)
-                    {
-                        <p>Error: Correo electrónico o contraseña incorrectos.</p>
-                    }
-                </div>
-                <br/>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-sign-in-alt"></i> INGRESAR </button>
+                <button type="submit" class="btn btn-primary w-100 mt-2"><i class="fas fa-sign-in-alt"></i> INGRESAR </button>
             </form>
         </div>
     </div>
-
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

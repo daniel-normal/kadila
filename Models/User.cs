@@ -9,19 +9,19 @@ public partial class User
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public ulong Id { get; set; }
-    [Display(Name = "Usuario")]
-    [Required(ErrorMessage = "El Nombre es obligatorio.")]
+    [Display(Name = "USUARIO")]
+    [Required(ErrorMessage = "Ingrese un nombre de usuario.")]
     public string Name { get; set; } = null!;
-    [Display(Name = "Correo Electrónico")]
+    [Display(Name = "CORREO ELECTRÓNICO")]
     [Required(ErrorMessage = "Ingrese un correo electrónico.")]
-    [EmailAddress(ErrorMessage = "El campo Email no tiene un formato válido.")]
+    [EmailAddress(ErrorMessage = "El correo electrónico no tiene un formato válido.")]
     public string Email { get; set; } = null!;
 
     [Required(ErrorMessage = "Ingrese una contraseña correcta.")]
-    [MinLength(6, ErrorMessage = "La longitud mínima de la contraseña es 6 caracteres.")]
+    [MinLength(6, ErrorMessage = "La longitud mínima de la contraseña es de 8 caracteres.")]
     public string Password { get; set; } = null!;
 
-    [Display(Name = "Fecha de Creación")]
+    [Display(Name = "FECHA DE REGISTRO")]
     public DateTime? CreatedAt { get; set; }
 
     [Display(Name = "Fecha de Actualización")]

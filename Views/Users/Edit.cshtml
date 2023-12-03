@@ -1,59 +1,52 @@
 ﻿@model kadila.Models.User
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "EDITAR DATOS - KADILA";
 }
 
-<h1>Edit</h1>
-
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Edit" class="row g-3 needs-validation" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card p-4">
+        <div class="card-header d-flex justify-content-between align-items-center bg-primary text-light">
+            <span><i class="fas fa-user mr-3"></i> &nbsp;&nbsp; EDITAR USUARIO</span>
+        </div>
+        <div class="card-body">
+            <h4>DATOS DE USUARIO</h4>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="h6 card-text text-primary">USUARIO</p>
+                        <input type="text" class="form-control" asp-for="Name" required>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="h6 card-text text-primary">CORREO ELECTRÓNICO</p>
+                        <input type="email" class="form-control" asp-for="Email" required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RolId" class="control-label"></label>
-                <select asp-for="RolId" class="form-control" asp-items="ViewBag.RolId"></select>
-                <span asp-validation-for="RolId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+            <input type="hidden" asp-for="RolId" />
+            <input type="hidden" asp-for="Password" />
+            <input type="hidden" asp-for="CreatedAt" />
+            <input type="hidden" asp-for="UpdatedAt" />
+        </div>
+        <div class="card-body">
+            <a asp-action="Index" class="btn btn-secondary w-100 mb-4">
+                CERRAR
+            </a>
+            <input type="submit" value="ACTUALIZAR" class="btn btn-primary w-100">
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

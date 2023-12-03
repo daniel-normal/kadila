@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace kadila.Controllers
 {
@@ -17,6 +19,15 @@ namespace kadila.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.FindFirstValue(ClaimTypes.Name);
+                ViewData["WelcomeMessage"] = $"Bienvenido/a, {userName}, usted inicio sesión exitosamente!";
+            }
+            else
+            {
+                ViewData["WelcomeMessage"] = "";
+            }
             return View();
         }
 

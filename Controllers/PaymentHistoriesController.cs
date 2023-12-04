@@ -106,16 +106,44 @@ namespace kadila.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FechaPago,Monto,DeudaId,CreatedAt,UpdatedAt")] PaymentHistory paymentHistory)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(paymentHistory);
-                await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "SE REGISTRÓ EL PAGO.";
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["DeudaId"] = new SelectList(_context.Debts, "Id", "Id", paymentHistory.DeudaId);
-            return View(paymentHistory);
+                var debt = await _context.Debts.FindAsync(paymentHistory.DeudaId);
+
+                if (debt == null)
+                {
+                    TempData["DangerMessage"] = "No se encontró la deuda asociada al pago.";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                if (paymentHistory.Monto > debt.Monto)
+                {
+                    TempData["DangerMessage"] = "El monto del pago no puede ser mayor que el monto de la deuda.";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                debt.Monto -= paymentHistory.Monto;
+
+                if (debt.Monto == 0)
+                {
+                debt.Estado = "PAGADO";
+                }
+
+                //por haberme hecho llorar :c
+
+                try
+                {
+                    _context.Update(debt);
+                    _context.Add(paymentHistory);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "SE REGISTRÓ EL PAGO Y SE ACTUALIZÓ LA DEUDA.";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    TempData["DangerMessage"] = $"Ocurrió un error: {ex.Message}";
+                    return RedirectToAction(nameof(Index));
+                }
         }
+
 
         public async Task<IActionResult> Edit(ulong? id)
         {

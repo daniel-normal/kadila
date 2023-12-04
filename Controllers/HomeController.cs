@@ -22,7 +22,7 @@ namespace kadila.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userName = User.FindFirstValue(ClaimTypes.Name);
-                ViewData["WelcomeMessage"] = $"Bienvenido/a, {userName}, usted inicio sesión exitosamente!";
+                ViewData["WelcomeMessage"] = $"BIENVENIDO/A, {userName}, USTED INICIO SESIÓN EXITOSAMENTE!";
             }
             else
             {

@@ -1,66 +1,79 @@
 ﻿@model kadila.Models.Customer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "DETALLES DE CLIENTE";
 }
 
-<h1>Details</h1>
+<div class="height-100">
+    <div class="col-12">
+        <div class="card p-4">
+            <div class="card-header d-flex justify-content-between align-items-center bg-primary text-light">
+                <span><i class="fas fa-user mr-3"></i> &nbsp;&nbsp; DETALLES DE CLIENTE</span>
+            </div>
+            <div class="table-responsive">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@Html.DisplayFor(model => model.Nombre)</h4>
+                            <p class="h5 card-text text-primary">NOMBRE</p>
+                        </div>
+                    </div>
 
-<div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SaldoDeuda)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SaldoDeuda)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoCliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoCliente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+                    @if (!string.IsNullOrEmpty(Model.Apellido))
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">@Html.DisplayFor(model => model.Apellido)</h4>
+                                <p class="h5 card-text text-primary">APELLIDO</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@Html.DisplayFor(model => model.Direccion)</h4>
+                            <p class="h5 card-text text-primary">DIRECCIÓN</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@Html.DisplayFor(model => model.Telefono)</h4>
+                            <p class="h5 card-text text-primary">CONTACTO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Bs. @Html.DisplayFor(model => model.SaldoDeuda)</h4>
+                            <p class="h5 card-text text-primary">SALDO/DEUDA</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@Html.DisplayFor(model => model.TipoCliente)</h4>
+                            <p class="h5 card-text text-primary">TIPO DE CLIENTE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@Html.DisplayFor(model => model.CreatedAt)</h4>
+                            <p class="h5 card-text text-primary">FECHA DE REGISTRO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <a asp-action="Index" class="btn btn-secondary w-100 mb-2">
+                    CERRAR
+                </a>
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary w-100">
+                    EDITAR
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

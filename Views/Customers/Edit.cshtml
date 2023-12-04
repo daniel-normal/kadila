@@ -1,68 +1,77 @@
 ﻿@model kadila.Models.Customer
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "EDITAR DATOS";
 }
 
-<h1>Edit</h1>
-
-<h4>Customer</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+<form asp-action="Edit" class="row g-3 needs-validation" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card p-4">
+        <div class="card-header d-flex justify-content-between align-items-center bg-primary text-light">
+            <span><i class="fas fa-user mr-3"></i> &nbsp;&nbsp; EDITAR CLIENTE</span>
+        </div>
+        <div class="card-body">
+            <h4>DATOS DEL CLIENTE</h4>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="h6 card-text text-primary">NOMBRE</p>
+                        <input type="text" class="form-control" asp-for="Nombre" required>
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.Apellido))
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="h6 card-text text-primary">APELLIDO</p>
+                            <input type="text" class="form-control" asp-for="Apellido">
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
             </div>
-            <div class="form-group">
-                <label asp-for="Apellido" class="control-label"></label>
-                <input asp-for="Apellido" class="form-control" />
-                <span asp-validation-for="Apellido" class="text-danger"></span>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="h6 card-text text-primary">DIRECCIÓN</p>
+                        <input type="text" class="form-control" asp-for="Direccion">
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="h6 card-text text-primary">TELÉFONO</p>
+                        <input type="number" class="form-control" asp-for="Telefono" required>
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="h6 card-text text-primary">SALDO/DEUDA</p>
+                        <input type="number" class="form-control" asp-for="SaldoDeuda" required>
+                        <span asp-validation-for="SaldoDeuda" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="h6 card-text text-primary">TIPO DE CLIENTE</p>
+                        <input type="text" class="form-control" asp-for="TipoCliente" readonly>
+                        <span asp-validation-for="TipoCliente" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SaldoDeuda" class="control-label"></label>
-                <input asp-for="SaldoDeuda" class="form-control" />
-                <span asp-validation-for="SaldoDeuda" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoCliente" class="control-label"></label>
-                <input asp-for="TipoCliente" class="form-control" />
-                <span asp-validation-for="TipoCliente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <div class="card-body">
+            <input type="hidden" asp-for="CreatedAt" />
+            <input type="hidden" asp-for="UpdatedAt" />
+            <a asp-action="Index" class="btn btn-secondary w-100 mb-4">CERRAR</a>
+            <input type="submit" value="ACTUALIZAR" class="btn btn-primary w-100">
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

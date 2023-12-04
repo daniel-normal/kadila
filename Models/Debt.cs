@@ -10,26 +10,33 @@ public partial class Debt
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public ulong Id { get; set; }
 
-    [Display(Name = "Fecha Límite")]
+    [Display(Name = "FECHA LÍMITE")]
+    [Required(ErrorMessage = "Seleccione una fecha.")]
     [DataType(DataType.Date)]
     public DateOnly? FechaLimite { get; set; }
 
-    [Display(Name = "Fecha de Creación")]
+    [Display(Name = "FECHA DE CREACIÓN")]
+    [Required(ErrorMessage = "Seleccione una fecha.")]
     [DataType(DataType.Date)]
     public DateOnly? FechaCreacion { get; set; }
 
+    [Display(Name = "MONTO")]
+    [Required(ErrorMessage = "El monto es obligatorio.")]
     [Range(1, uint.MaxValue, ErrorMessage = "El campo Monto debe ser mayor o igual a 1.")]
     public uint? Monto { get; set; }
 
+    [Display(Name = "ESTADO")]
     [StringLength(50, ErrorMessage = "El campo Estado no puede tener más de 50 caracteres.")]
-    public string? Estado { get; set; }
+    public string? Estado { get; set; } = "PENDIENTE";
 
+    [Display(Name = "CLIENTE")]
+    [Required(ErrorMessage = "Seleccione un cliente.")]
     public ulong ClienteId { get; set; }
 
-    [Display(Name = "Fecha de Creación")]
+    [Display(Name = "FECHA DE REGISTRO")]
     public DateTime? CreatedAt { get; set; }
 
-    [Display(Name = "Fecha de Actualización")]
+    [Display(Name = "FECHA DE ACTUALIZACIÓN")]
     public DateTime? UpdatedAt { get; set; }
 
     [ForeignKey("ClienteId")]

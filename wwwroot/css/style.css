@@ -273,9 +273,7 @@ footer {
 
 .title-final {
     text-align: center;
-    font-size: 24px;
     margin: 20px 0 0 0;
-    color: #9e9797;
 }
 
 @media screen and (max-width:900px) {

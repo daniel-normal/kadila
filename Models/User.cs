@@ -26,8 +26,9 @@ public partial class User
 
     [Display(Name = "Fecha de Actualización")]
     public DateTime? UpdatedAt { get; set; }
-    [Display(Name = "Rol")]
 
+    [Display(Name = "Rol")]
+    [Required(ErrorMessage = "Seleccione un rol.")]
     public ulong? RolId { get; set; }
 
     [ForeignKey("RolId")]

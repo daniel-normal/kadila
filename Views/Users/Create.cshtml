@@ -1,7 +1,7 @@
 ﻿@model kadila.Models.User
 
 @{
-    ViewData["Title"] = "REGISTRAR USUARIO - KADILA";
+    ViewData["Title"] = "REGISTRAR USUARIO";
 }
 
 <form asp-action="Create" class="row g-3 needs-validation" novalidate>
@@ -36,6 +36,7 @@
                     <div class="card-body">
                         <p class="h6 card-text text-primary">MODALIDAD DE INGRESO</p>
                         <select asp-for="RolId" class="form-control" asp-items="@(ViewData["Roles"] as IEnumerable<SelectListItem>)"></select>
+                        <span asp-validation-for="RolId" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -67,15 +68,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const passwordField = document.getElementById('passwordField');
-            const togglePasswordButton = document.getElementById('togglePassword');
-
-            togglePasswordButton.addEventListener('click', function () {
-                const type = passwordField.type === 'password' ? 'text' : 'password';
-                passwordField.type = type;
-            });
-        });
-    </script>
+    <script src="~/js/password.js" asp-append-version="true"></script>
 }

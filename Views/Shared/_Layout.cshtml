@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - kadila</title>
+    <title>@ViewData["Title"] - KADILA</title>
     <link rel="shortcut icon" href="~/img/kadila.jpg" type="image/x-icon">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -20,26 +20,30 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a class="nav_logo"> <i class='fas fa-layer-group nav_logo-icon'></i> <span class="nav_logo-name">Kadila</span> </a>
+                <a class="nav_logo">
+                    <img src="~/img/logo.png" alt="Kadila Logo" class="nav_logo-icon" style="width: 30px; height: 30px;">
+                    <span class="nav_logo-name">KADILA</span>
+                </a>
+
                 <div class="nav_list">
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav_link text-light"> <i class='fas fa-home nav_icon'></i> <span class="nav_name">Inicio</span> </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav_link text-light"> <i class='fas fa-home nav_icon'></i> <span class="nav_name">INICIO</span> </a>
 
                     @if(User.IsInRole("1"))
                     {
-                        <a asp-area="" asp-controller="Users" asp-action="Index" class="nav_link text-light"> <i class='fas fa-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
+                        <a asp-area="" asp-controller="Users" asp-action="Index" class="nav_link text-light"> <i class='fas fa-user nav_icon'></i> <span class="nav_name">USUARIOS</span> </a>
                     }
 
-                    <a asp-area="" asp-controller="Customers" asp-action="Index" class="nav_link text-light"> <i class='fas fa-users nav_icon'></i> <span class="nav_name">Clientes</span> </a>
+                    <a asp-area="" asp-controller="Customers" asp-action="Index" class="nav_link text-light"> <i class='fas fa-users nav_icon'></i> <span class="nav_name">CLIENTES</span> </a>
 
                     <a asp-area="" asp-controller="Debts" asp-action="Index" class="nav_link text-light">
                         <i class='fas fa-money-bill nav_icon'></i>
-                        <span class="nav_name">Deudas</span>
+                        <span class="nav_name">DEUDAS</span>
                     </a>
                     
-                    <a href="#" class="nav_link text-light"> <i class='fas fa-chart-bar nav_icon'></i> <span class="nav_name">Reportes</span> </a>          
+                    <a href="#" class="nav_link text-light"> <i class='fas fa-chart-bar nav_icon'></i> <span class="nav_name">REPORTES</span> </a>          
                 </div>
             </div>
-            <a asp-area="" asp-controller="Login" asp-action="Logout" class="nav_link text-light"> <i class='fas fa-sign-out-alt nav_icon'></i> <span class="nav_name">Cerrar Sesión</span> </a>
+            <a asp-area="" asp-controller="Login" asp-action="Logout" class="nav_link text-light"> <i class='fas fa-sign-out-alt nav_icon'></i> <span class="nav_name">SALIR</span> </a>
         </nav>
     </div>
 

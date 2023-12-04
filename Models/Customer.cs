@@ -8,33 +8,34 @@ namespace kadila.Models
     public partial class Customer
     {
         public ulong Id { get; set; }
-
+        [Display(Name = "NOMBRE")]
         [Required(ErrorMessage = "El nombre es obligatorio.")]
         [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$", ErrorMessage = "El nombre solo puede contener letras y espacios.")]
         public string? Nombre { get; set; }
 
-        [Required(ErrorMessage = "El apellido es obligatorio.")]
+        [Display(Name = "APELLIDO")]
         [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$", ErrorMessage = "El apellido solo puede contener letras y espacios.")]
         public string? Apellido { get; set; }
 
-        [Display(Name = "Dirección")]
+        [Display(Name = "DIRECCIÓN")]
         public string? Direccion { get; set; }
 
-        [Display(Name = "Teléfono")]
-        [RegularExpression(@"^\d{7,8}$", ErrorMessage = "El número de teléfono debe tener entre 10 y 15 dígitos.")]
+        [Display(Name = "CONTACTO")]
+        [Required(ErrorMessage = "El número de celular/teléfono es obligatorio.")]
+        [RegularExpression(@"^\d{7,9}$", ErrorMessage = "El número de teléfono debe tener entre 7 y 9 dígitos.")]
         public string? Telefono { get; set; }
 
-        [Display(Name = "Saldo/Deuda")]
-        [RegularExpression(@"^\d+$", ErrorMessage = "El saldo de deuda debe ser un número entero.")]
+        [Display(Name = "SALDO/DEUDA")]
+        [Required(ErrorMessage = "El saldo de la deuda es obligatorio.")]
         public uint? SaldoDeuda { get; set; }
 
-        [Display(Name = "Tipo")]
+        [Display(Name = "TIPO DE CLIENTE")]
         public string? TipoCliente { get; set; }
 
-        [Display(Name = "Fecha de Creación")]
+        [Display(Name = "FECHA DE REGISTRO")]
         public DateTime? CreatedAt { get; set; }
 
-        [Display(Name = "Fecha de Actualización")]
+        [Display(Name = "FECHA DE ACTUALIZACIÓN")]
         public DateTime? UpdatedAt { get; set; }
 
         public virtual ICollection<Debt> Debts { get; set; } = new List<Debt>();

@@ -22,12 +22,27 @@ namespace kadila.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-              return _context.Customers != null ? 
-                          View(await _context.Customers.ToListAsync()) :
-                          Problem("Entity set 'DotnetContext.Customers'  is null.");
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            var customers = _context.Customers.AsQueryable();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers = customers.Where(c => c.Nombre.Contains(searchString) || c.Apellido.Contains(searchString) || c.Direccion.Contains(searchString) || c.Telefono.Contains(searchString) || c.TipoCliente.Contains(searchString));
+            }
+            int pageSize = 10;
+            return View(await PaginatedList<Customer>.CreateAsync(customers.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
+
 
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(ulong? id)
@@ -62,12 +77,22 @@ namespace kadila.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.Nombre = customer.Nombre.ToUpper();
+
+                if (customer.Apellido != null)
+                {
+                    customer.Apellido = customer.Apellido.ToUpper();
+                }
+
+                customer.Direccion = customer.Direccion.ToUpper();
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "SE REGISTRÓ AL CLIENTE.";
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
         }
+
 
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(ulong? id)
@@ -101,6 +126,12 @@ namespace kadila.Controllers
             {
                 try
                 {
+                    customer.Nombre = customer.Nombre.ToUpper();
+                    if (customer.Apellido != null)
+                    {
+                        customer.Apellido = customer.Apellido.ToUpper();
+                    }
+                    customer.Direccion = customer.Direccion.ToUpper();
                     _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }
@@ -115,6 +146,7 @@ namespace kadila.Controllers
                         throw;
                     }
                 }
+                TempData["WarningMessage"] = "SE ACTUALIZARON LOS DATOS DEL CLIENTE.";
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
@@ -154,6 +186,7 @@ namespace kadila.Controllers
             }
             
             await _context.SaveChangesAsync();
+            TempData["DangerMessage"] = "SE ELIMINÓ AL CLIENTE.";
             return RedirectToAction(nameof(Index));
         }
 

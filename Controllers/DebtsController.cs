@@ -50,9 +50,18 @@ namespace kadila.Controllers
         // GET: Debts/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Customers, "Id", "Id");
+            var customers = _context.Customers
+                .Select(r => new SelectListItem
+                {
+                    Value = r.Id.ToString(),
+                    Text = string.IsNullOrEmpty(r.Apellido) ? r.Nombre : $"{r.Nombre} {r.Apellido}"
+                })
+                .ToList();
+            customers.Insert(0, new SelectListItem { Value = "", Text = "SELECCIONAR CLIENTE" });
+            ViewData["Customers"] = customers;
             return View();
         }
+
 
         // POST: Debts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

@@ -134,6 +134,7 @@ namespace kadila.Controllers
             {
                 try
                 {
+                    user.Name = user.Name.ToUpper();
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }

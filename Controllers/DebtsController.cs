@@ -22,10 +22,31 @@ namespace kadila.Controllers
         }
 
         // GET: Debts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            var dotnetContext = _context.Debts.Include(d => d.Cliente);
-            return View(await dotnetContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var debts = _context.Debts.Include(d => d.Cliente).AsQueryable();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                debts = debts.Where(d => d.Estado.Contains(searchString) ||
+                                         d.Cliente.Nombre.Contains(searchString) ||
+                                         d.Cliente.Apellido.Contains(searchString));
+            }
+
+            int pageSize = 10;
+            return View(await PaginatedList<Debt>.CreateAsync(debts.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Debts/Details/5
@@ -58,7 +79,7 @@ namespace kadila.Controllers
                 })
                 .ToList();
             customers.Insert(0, new SelectListItem { Value = "", Text = "SELECCIONAR CLIENTE" });
-            ViewData["Customers"] = customers;
+            ViewData["Debts"] = customers;
             return View();
         }
 
@@ -74,6 +95,7 @@ namespace kadila.Controllers
             {
                 _context.Add(debt);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "SE REGISTRÓ LA DEUDA.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClienteId"] = new SelectList(_context.Customers, "Id", "Id", debt.ClienteId);
@@ -93,9 +115,29 @@ namespace kadila.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Customers, "Id", "Id", debt.ClienteId);
+
+            var customers = _context.Customers
+                .Select(r => new SelectListItem
+                {
+                    Value = r.Id.ToString(),
+                    Text = string.IsNullOrEmpty(r.Apellido) ? r.Nombre : $"{r.Nombre} {r.Apellido}"
+                })
+                .ToList();
+
+            foreach (var customer in customers)
+            {
+                if (customer.Value == debt.ClienteId.ToString())
+                {
+                    customer.Selected = true;
+                    break;
+                }
+            }
+
+            ViewData["ClienteId"] = customers;
+
             return View(debt);
         }
+
 
         // POST: Debts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -127,6 +169,7 @@ namespace kadila.Controllers
                         throw;
                     }
                 }
+                TempData["WarningMessage"] = "SE ACTUALIZARON LOS DATOS DE LA DEUDA.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClienteId"] = new SelectList(_context.Customers, "Id", "Id", debt.ClienteId);
@@ -168,6 +211,7 @@ namespace kadila.Controllers
             }
             
             await _context.SaveChangesAsync();
+            TempData["DangerMessage"] = "SE ELIMINÓ LA DEUDA.";
             return RedirectToAction(nameof(Index));
         }
         

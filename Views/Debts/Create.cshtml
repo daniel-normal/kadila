@@ -41,7 +41,7 @@
                     <div class="card">
                         <div class="card-body">
                             <label asp-for="ClienteId" class="form-label"></label>
-                            <select asp-for="ClienteId" class="form-control" asp-items="@(ViewData["Customers"] as IEnumerable<SelectListItem>)"></select>
+                            <select asp-for="ClienteId" class="form-control" asp-items="@(ViewData["Debts"] as IEnumerable<SelectListItem>)"></select>
                             <span asp-validation-for="ClienteId" class="text-danger"></span>
                         </div>
                     </div>

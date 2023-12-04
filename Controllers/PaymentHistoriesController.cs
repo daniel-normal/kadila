@@ -22,11 +22,42 @@ namespace kadila.Controllers
         }
 
         // GET: PaymentHistories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            var dotnetContext = _context.PaymentHistories.Include(p => p.Deuda);
-            return View(await dotnetContext.ToListAsync());
+            ViewData["DateSortParm"] = string.IsNullOrEmpty(sortOrder) ? "Date" : "";
+
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+
+            var payments = _context.PaymentHistories
+                .Include(p => p.Deuda)
+                    .ThenInclude(d => d.Cliente)
+                .AsQueryable();
+
+            switch (sortOrder)
+            {
+                case "Date":
+                    payments = payments.OrderBy(s => s.FechaPago);
+                    break;
+                case "date_desc":
+                    payments = payments.OrderByDescending(s => s.FechaPago);
+                    break;
+                case "date_asc":
+                    payments = payments.OrderBy(s => s.FechaPago);
+                    break;
+                default:
+                    payments = payments.OrderByDescending(s => s.FechaPago);
+                    break;
+            }
+
+            int pageSize = 10;
+            var paginatedPayments = await PaginatedList<PaymentHistory>.CreateAsync(payments.AsNoTracking(), pageNumber ?? 1, pageSize);
+
+            return View(paginatedPayments);
         }
+
+
+
 
         // GET: PaymentHistories/Details/5
         public async Task<IActionResult> Details(ulong? id)
@@ -38,7 +69,9 @@ namespace kadila.Controllers
 
             var paymentHistory = await _context.PaymentHistories
                 .Include(p => p.Deuda)
+                    .ThenInclude(d => d.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (paymentHistory == null)
             {
                 return NotFound();
@@ -47,12 +80,24 @@ namespace kadila.Controllers
             return View(paymentHistory);
         }
 
+
         // GET: PaymentHistories/Create
         public IActionResult Create()
         {
-            ViewData["DeudaId"] = new SelectList(_context.Debts, "Id", "Id");
+            var debts = _context.Debts
+                .Include(d => d.Cliente)
+                .Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = $"MONTO: Bs. {d.Monto} - CLIENTE: {d.Cliente.Nombre} {d.Cliente.Apellido}"
+                })
+                .ToList();
+            debts.Insert(0, new SelectListItem { Value = "", Text = "SELECCIONAR DEUDA" });
+            ViewData["Debts"] = debts;
             return View();
         }
+
+
 
         // POST: PaymentHistories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -65,13 +110,13 @@ namespace kadila.Controllers
             {
                 _context.Add(paymentHistory);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "SE REGISTRÓ EL PAGO.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DeudaId"] = new SelectList(_context.Debts, "Id", "Id", paymentHistory.DeudaId);
             return View(paymentHistory);
         }
 
-        // GET: PaymentHistories/Edit/5
         public async Task<IActionResult> Edit(ulong? id)
         {
             if (id == null || _context.PaymentHistories == null)
@@ -79,14 +124,32 @@ namespace kadila.Controllers
                 return NotFound();
             }
 
-            var paymentHistory = await _context.PaymentHistories.FindAsync(id);
+            var paymentHistory = await _context.PaymentHistories
+                .Include(p => p.Deuda)
+                .ThenInclude(d => d.Cliente)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (paymentHistory == null)
             {
                 return NotFound();
             }
-            ViewData["DeudaId"] = new SelectList(_context.Debts, "Id", "Id", paymentHistory.DeudaId);
+
+            ViewData["Name"] = paymentHistory.Deuda?.Cliente.Nombre;
+            ViewData["LastName"] = paymentHistory.Deuda?.Cliente.Apellido;
+
+            var debts = _context.Debts
+                .Include(d => d.Cliente)
+                .Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = $"MONTO: Bs. {d.Monto} - CLIENTE: {d.Cliente.Nombre} {d.Cliente.Apellido}"
+                })
+                .ToList();
+
+            ViewData["Debts"] = debts;
             return View(paymentHistory);
         }
+
 
         // POST: PaymentHistories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -118,6 +181,7 @@ namespace kadila.Controllers
                         throw;
                     }
                 }
+                TempData["WarningMessage"] = "SE ACTUALIZARON LOS DATOS DEL PAGO.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DeudaId"] = new SelectList(_context.Debts, "Id", "Id", paymentHistory.DeudaId);
@@ -134,6 +198,7 @@ namespace kadila.Controllers
 
             var paymentHistory = await _context.PaymentHistories
                 .Include(p => p.Deuda)
+                .ThenInclude(d => d.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (paymentHistory == null)
             {
@@ -159,6 +224,7 @@ namespace kadila.Controllers
             }
             
             await _context.SaveChangesAsync();
+            TempData["DangerMessage"] = "SE ELIMINÓ EL PAGO.";
             return RedirectToAction(nameof(Index));
         }
 

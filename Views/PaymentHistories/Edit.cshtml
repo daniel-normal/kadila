@@ -1,53 +1,56 @@
 ﻿@model kadila.Models.PaymentHistory
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "EDITAR PAGO";
 }
 
-<h1>Edit</h1>
-
-<h4>PaymentHistory</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Edit" class="row g-3 needs-validation" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card p-4">
+        <div class="card-header d-flex justify-content-between align-items-center bg-primary text-light">
+            <span><i class="fas fa-user mr-3"></i> &nbsp;&nbsp; EDITAR PAGO</span>
+        </div>
+        <div class="card-body">
+            <h4>DETALLES DE PAGO</h4>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <label asp-for="FechaPago" class="control-label"></label>
+                        <input asp-for="FechaPago" class="form-control" type="date" value="@Model.FechaPago?.ToString("yyyy-MM-dd")" />
+                        <span asp-validation-for="FechaPago" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label asp-for="Monto" class="control-label"></label>
+                        <input asp-for="Monto" class="form-control" />
+                        <span asp-validation-for="Monto" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <label asp-for="DeudaId" class="control-label"></label>
+                        <select asp-for="DeudaId" class="form-control" asp-items="@(ViewData["Debts"] as IEnumerable<SelectListItem>)"></select>
+                        <span asp-validation-for="DeudaId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="FechaPago" class="control-label"></label>
-                <input asp-for="FechaPago" class="form-control" />
-                <span asp-validation-for="FechaPago" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Monto" class="control-label"></label>
-                <input asp-for="Monto" class="form-control" />
-                <span asp-validation-for="Monto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeudaId" class="control-label"></label>
-                <select asp-for="DeudaId" class="form-control" asp-items="ViewBag.DeudaId"></select>
-                <span asp-validation-for="DeudaId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+            <input type="hidden" asp-for="CreatedAt" />
+            <input type="hidden" asp-for="UpdatedAt" />
+        </div>
+        <div class="card-body">
+            <a asp-action="Index" class="btn btn-secondary w-100 mb-4">
+                CERRAR
+            </a>
+            <input type="submit" value="ACTUALIZAR" class="btn btn-primary w-100">
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

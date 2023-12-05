@@ -37,4 +37,11 @@ public partial class User
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
     
     public virtual ICollection<Session> Sessions { get; set; } = new List<Session>();
+
+
+    [Column(TypeName = "varchar(255)")]
+    public string ResetToken { get; set; }
+
+    [NotMapped]
+    public DateTime? ResetTokenExpiry { get; set; }
 }

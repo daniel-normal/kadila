@@ -11,8 +11,8 @@ using kadila.Data;
 namespace kadila.Migrations
 {
     [DbContext(typeof(DotnetContext))]
-    [Migration("20231124145244_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231205045517_AddResetTokenToUser")]
+    partial class AddResetTokenToUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,6 @@ namespace kadila.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Apellido")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)")
@@ -86,12 +85,14 @@ namespace kadila.Migrations
                         .HasDefaultValueSql("''");
 
                     b.Property<uint?>("SaldoDeuda")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int(10) unsigned")
                         .HasColumnName("saldo_deuda")
                         .HasDefaultValueSql("'1'");
 
                     b.Property<string>("Telefono")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(9)
                         .HasColumnType("varchar(9)")
@@ -137,14 +138,17 @@ namespace kadila.Migrations
                         .HasColumnName("estado");
 
                     b.Property<DateOnly?>("FechaCreacion")
+                        .IsRequired()
                         .HasColumnType("date")
                         .HasColumnName("fecha_creacion");
 
                     b.Property<DateOnly?>("FechaLimite")
+                        .IsRequired()
                         .HasColumnType("date")
                         .HasColumnName("fecha_limite");
 
                     b.Property<uint?>("Monto")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int(10) unsigned")
                         .HasColumnName("monto")
@@ -233,10 +237,12 @@ namespace kadila.Migrations
                         .HasDefaultValueSql("'1'");
 
                     b.Property<DateOnly?>("FechaPago")
+                        .IsRequired()
                         .HasColumnType("date")
                         .HasColumnName("fecha_pago");
 
                     b.Property<uint?>("Monto")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int(10) unsigned")
                         .HasColumnName("monto")
@@ -445,6 +451,37 @@ namespace kadila.Migrations
                     MySqlEntityTypeBuilderExtensions.UseCollation(b, "utf8mb4_unicode_ci");
                 });
 
+            modelBuilder.Entity("kadila.Models.Session", b =>
+                {
+                    b.Property<ulong>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint(20) unsigned")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("LoginDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("login_date")
+                        .HasDefaultValueSql("current_timestamp()");
+
+                    b.Property<DateTime?>("LogoutDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("logout_date")
+                        .HasDefaultValueSql("current_timestamp()");
+
+                    b.Property<ulong?>("UserId")
+                        .HasColumnType("bigint(20) unsigned")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PRIMARY");
+
+                    b.HasIndex(new[] { "UserId" }, "sessions_user_id_foreign");
+
+                    b.ToTable("sessions", (string)null);
+                });
+
             modelBuilder.Entity("kadila.Models.User", b =>
                 {
                     b.Property<ulong>("Id")
@@ -473,7 +510,11 @@ namespace kadila.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("password");
 
+                    b.Property<string>("ResetToken")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<ulong?>("RolId")
+                        .IsRequired()
                         .HasColumnType("bigint(20) unsigned")
                         .HasColumnName("rol_id");
 
@@ -581,12 +622,24 @@ namespace kadila.Migrations
                     b.Navigation("Venta");
                 });
 
+            modelBuilder.Entity("kadila.Models.Session", b =>
+                {
+                    b.HasOne("kadila.Models.User", "User")
+                        .WithMany("Sessions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("sessions_user_id_foreign");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("kadila.Models.User", b =>
                 {
                     b.HasOne("kadila.Models.Role", "Rol")
                         .WithMany("Users")
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("fk_rol");
 
                     b.Navigation("Rol");
@@ -626,6 +679,8 @@ namespace kadila.Migrations
             modelBuilder.Entity("kadila.Models.User", b =>
                 {
                     b.Navigation("Sales");
+
+                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

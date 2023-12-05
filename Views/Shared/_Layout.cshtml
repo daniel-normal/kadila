@@ -45,8 +45,20 @@
                         <span class="nav_name">PAGOS</span>
                     </a>
 
-                    
-                    <a href="#" class="nav_link text-light"> <i class='fas fa-chart-bar nav_icon'></i> <span class="nav_name">REPORTES</span> </a>          
+                    <a asp-area="" asp-controller="Products" asp-action="Index" class="nav_link text-light">
+                        <i class='fas fa-pills nav_icon'></i>
+                        <span class="nav_name">PRODUCTOS</span>
+                    </a>
+
+                    <a asp-area="" asp-controller="Lots" asp-action="Index" class="nav_link text-light">
+                        <i class='fas fa-prescription-bottle-alt nav_icon'></i>
+                        <span class="nav_name">LOTES</span>
+                    </a>
+                  
+                    <a class="nav_link text-light"> 
+                        <i class='fas fa-chart-bar nav_icon'></i> 
+                        <span class="nav_name">REPORTES</span>
+                    </a>          
                 </div>
             </div>
             <a asp-area="" asp-controller="Login" asp-action="Logout" class="nav_link text-light"> <i class='fas fa-sign-out-alt nav_icon'></i> <span class="nav_name">SALIR</span> </a>

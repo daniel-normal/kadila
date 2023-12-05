@@ -1,37 +1,61 @@
 ﻿@model kadila.Models.Lot
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "REGISTRAR LOTE";
 }
 
-<h1>Create</h1>
+<form asp-action="Create" class="row g-3 needs-validation" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card p-4">
+        <div class="card-header d-flex justify-content-between align-items-center bg-primary text-light">
+            <span><i class="fas fa-user mr-3"></i> &nbsp;&nbsp; REGISTRAR NUEVA DEUDA</span>
+        </div>
+        <div class="card-body">
+            <h4>DETALLES DE LA DEUDA</h4>
+            <div class="card-body">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <label asp-for="Nombre" class="form-label"></label>
+                            <input asp-for="Nombre" class="form-control" required>
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <label asp-for="Cantidad" class="form-label"></label>
+                            <input type="number" asp-for="Cantidad" class="form-control" required>
+                            <span asp-validation-for="Cantidad" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
 
-<h4>Lot</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <label asp-for="PrecioActual" class="form-label"></label>
+                            <input asp-for="PrecioActual" class="form-control" required>
+                            <span asp-validation-for="PrecioActual" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <label asp-for="ProductoId" class="form-label"></label>
+                            <select asp-for="ProductoId" class="form-control" asp-items="@(ViewData["Lots"] as IEnumerable<SelectListItem>)"></select>
+                            <span asp-validation-for="ProductoId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <div class="card-body">
+            <a asp-action="Index" class="btn btn-secondary w-100 mb-4">
+                CERRAR
+            </a>
+            <input type="submit" value="REGISTRAR" class="btn btn-primary w-100">
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

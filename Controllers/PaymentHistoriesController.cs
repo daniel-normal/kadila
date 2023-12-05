@@ -110,13 +110,13 @@ namespace kadila.Controllers
 
                 if (debt == null)
                 {
-                    TempData["DangerMessage"] = "No se encontró la deuda asociada al pago.";
+                    TempData["DangerMessage"] = "NO SE ENCONTRÓ LA DEUDA ASOCIADA AL PAGO.";
                     return RedirectToAction(nameof(Index));
                 }
 
                 if (paymentHistory.Monto > debt.Monto)
                 {
-                    TempData["DangerMessage"] = "El monto del pago no puede ser mayor que el monto de la deuda.";
+                    TempData["DangerMessage"] = "EL MONTO DEL PAGO NO PUEDE SER MAYOR QUE EL MONTO DE LA DEUDA.";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -137,9 +137,9 @@ namespace kadila.Controllers
                     TempData["SuccessMessage"] = "SE REGISTRÓ EL PAGO Y SE ACTUALIZÓ LA DEUDA.";
                     return RedirectToAction(nameof(Index));
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    TempData["DangerMessage"] = $"Ocurrió un error: {ex.Message}";
+                    TempData["DangerMessage"] = $"OCURRIÓ UN ERROR: {e.Message}";
                     return RedirectToAction(nameof(Index));
                 }
         }

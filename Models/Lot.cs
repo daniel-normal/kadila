@@ -10,24 +10,32 @@ public partial class Lot
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public ulong Id { get; set; }
 
-    [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
-    [StringLength(255, ErrorMessage = "El campo Nombre no puede tener más de 255 caracteres.")]
+    [Display(Name = "NOMBRE")]
+    [Required(ErrorMessage = "El nombre es obligatorio.")]
+    [StringLength(255, ErrorMessage = "El nombre no puede tener más de 255 caracteres.")]
     public string? Nombre { get; set; }
 
-    [Range(1, uint.MaxValue, ErrorMessage = "El campo Cantidad debe ser mayor o igual a 1.")]
+    [Display(Name = "CANTIDAD")]
+    [Required(ErrorMessage = "Seleccione una cantidad.")]
+    [Range(1, uint.MaxValue, ErrorMessage = "La cantidad debe ser mayor o igual a 1.")]
     public uint? Cantidad { get; set; }
 
-    [Range(1, uint.MaxValue, ErrorMessage = "El campo PrecioActual debe ser mayor o igual a 1.")]
+    [Display(Name = "PRECIO ACTUAL")]
+    [Required(ErrorMessage = "Ingrese precio.")]
+    [Range(1, uint.MaxValue, ErrorMessage = "El precio actual debe ser mayor o igual a 1.")]
     public uint? PrecioActual { get; set; }
 
+    [Display(Name = "PRODUCTO")]
+    [Required(ErrorMessage = "Seleccione un producto.")]
     public ulong ProductoId { get; set; }
 
-    [Display(Name = "Fecha de Creación")]
+    [Display(Name = "FECHA DE REGISTRO")]
     public DateTime? CreatedAt { get; set; }
 
-    [Display(Name = "Fecha de Actualización")]
+    [Display(Name = "FECHA DE ACTUALIZACIÓN")]
     public DateTime? UpdatedAt { get; set; }
 
+    [Display(Name = "PRODUCTO")]
     [ForeignKey("ProductoId")]
     public virtual Product Producto { get; set; } = null!;
 }

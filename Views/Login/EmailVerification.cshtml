@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERIFICACIÓN - KADILA</title>
+    <link rel="shortcut icon" href="~/img/kadila.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/font-awesome/css/all.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body class="bg-light">
+    <div class="ocean">
+        <div class="wave"></div>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6 col-sm-10 col-12 text-center">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                        <strong>ÉXITO!</strong> @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <div class="card shadow rounded mt-4" style="max-width: 35rem;">
+                    <div class="card-header bg-primary text-white text-center p-4">
+                        <h4><i class="fas fa-key"></i> &nbsp; CAMBIAR CONTRASEÑA </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form asp-controller="Login" asp-action="EmailVerification" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">CORREO ELECTRÓNICO</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-primary text-light"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" name="Email">
+                                </div>
+                                <span class="text-danger">@Html.ValidationMessage("Email")</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mt-2"><i class="fas fa-check-circle"></i> VERIFICAR </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using kadila.Data;
 using kadila.Models;
+using System.Diagnostics;
 
 namespace kadila.Controllers
 {
@@ -22,10 +23,29 @@ namespace kadila.Controllers
         }
 
         // GET: Lots
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            var dotnetContext = _context.Lots.Include(l => l.Producto);
-            return View(await dotnetContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var lots = _context.Lots.Include(l => l.Producto).AsQueryable();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                lots = lots.Where(l => l.Nombre.Contains(searchString));
+            }
+
+            int pageSize = 10;
+            return View(await PaginatedList<Lot>.CreateAsync(lots.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Lots/Details/5
@@ -50,7 +70,15 @@ namespace kadila.Controllers
         // GET: Lots/Create
         public IActionResult Create()
         {
-            ViewData["ProductoId"] = new SelectList(_context.Products, "Id", "Id");
+            var products = _context.Products
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = $"{p.Nombre} {p.Precio}"
+                })
+                .ToList();
+            products.Insert(0, new SelectListItem { Value = "", Text = "SELECCIONAR PRODUCTO" });
+            ViewData["Lots"] = products;
             return View();
         }
 

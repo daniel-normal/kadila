@@ -1,65 +1,137 @@
-﻿@model IEnumerable<kadila.Models.Lot>
+﻿@model PaginatedList<kadila.Models.Lot>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "LOTES";
 }
 
-<h1>Index</h1>
+<div class="height-100">
+    <div class="col-12">
+        <div class="card p-4">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show text-center w-100" role="alert">
+                    <strong>ÉXITO!</strong> @Html.Raw(TempData["SuccessMessage"])
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrecioActual)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Producto)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioActual)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Producto.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            @if (TempData["WarningMessage"] != null)
+            {
+                <div class="alert alert-warning alert-dismissible fade show text-center w-100" role="alert">
+                    <strong>ÉXITO!</strong> @Html.Raw(TempData["WarningMessage"])
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @if (TempData["DangerMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show text-center w-100" role="alert">
+                    <strong>ÉXITO!</strong> @Html.Raw(TempData["DangerMessage"])
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div class="card-header d-flex justify-content-between align-items-center bg-primary text-light">
+                <span><i class="fas fa-user mr-3"></i> &nbsp;&nbsp; REGISTRO DE LOTES</span>
+                <div class="d-flex">
+                    <a asp-action="Create" class="btn btn-outline-light ml-auto">
+                        <i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;NUEVO
+                    </a>
+                    &nbsp;
+                    &nbsp;
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="input-group col-md-10">
+                                <form class="form-inline" asp-action="Index" method="get">
+                                    <input name="SearchString" value="@ViewData["CurrentFilter"]" type="text" class="form-control" placeholder="TEXTO A BUSCAR">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary" name="search"><i class="fa fa-search"></i>&nbsp;&nbsp;BUSCAR</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-sm bg-white text-dark" style="font-size: 11pt;">
+                    <thead>
+                        <tr class="text-center">
+                            <th>
+                                @Html.DisplayNameFor(modelItem => Model.First().Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => Model.First().Cantidad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => Model.First().PrecioActual)
+                            </th>
+                            <th>
+                                PRODUCTO
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => Model.First().CreatedAt)
+                            </th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cantidad)
+                                </td>
+                                <td>
+                                    Bs. @Html.DisplayFor(modelItem => item.PrecioActual)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Producto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                                </td>
+                                <td>
+                                    <a class="btn btn-outline-secondary mb-2" asp-action="Details" asp-route-id="@item.Id">
+                                        <i class="fas fa-eye"></i> VER
+                                    </a>
+                                    <a class="btn btn-outline-primary mb-2" asp-action="Edit" asp-route-id="@item.Id">
+                                        <i class="fas fa-edit"></i> EDITAR
+                                    </a>
+                                    <a class="btn btn-outline-danger mb-2" asp-action="Delete" asp-route-id="@item.Id">
+                                        <i class="fas fa-trash-alt"></i> ELIMINAR
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-primary @prevDisabled">
+                    ANTERIOR
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-primary @nextDisabled">
+                    SIGUIENTE
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
